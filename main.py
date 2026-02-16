@@ -13,26 +13,31 @@ played = [0]
 #        while deck.cardCheck(played, x):
 #             x = deck.cardCheck(played, deck.cardRoll())
 
-quit = False
-while not quit:
-    usr = (int(input("Enter 1 to play 2 to quit \n")))
-    if usr == 1:
-        for i in range(1, 3):
-            x = deck.cardRoll()
-            played.append(x)
-            if deck.cardCheck(played, x):
-                while deck.cardCheck(played, x):
-                    x = deck.cardCheck(played, deck.cardRoll())
-            print(x)
-        usr = (int(input("Enter 1 to hit 2 to stay \n")))
-        if usr == 1:
-            x = deck.cardRoll()
-            played.append(x)
-            if deck.cardCheck(played, x):
-                while deck.cardCheck(played, x):
-                    x = deck.cardCheck(played, deck.cardRoll())
-            print(x)
-            
+x = deck.cardRoll() + deck.cardRoll()
+print(x)
 
-    else:
-        quit = True
+
+def holder():
+    quit = False
+    while not quit:
+        usr = (int(input("Enter 1 to play 2 to quit \n")))
+        if usr == 1:
+            for i in range(1, 3):
+                x = deck.cardRoll()
+                played.append(x)
+                if deck.cardCheck(played, x):
+                    while deck.cardCheck(played, x):
+                        x = deck.cardCheck(played, deck.cardRoll())
+                print(x)
+            usr = (int(input("Enter 1 to hit 2 to stay \n")))
+            if usr == 1:
+                x = deck.cardRoll()
+                played.append(x)
+                if deck.cardCheck(played, x):
+                    while deck.cardCheck(played, x):
+                        x = deck.cardCheck(played, deck.cardRoll())
+                print(x)
+
+
+        else:
+            quit = True
