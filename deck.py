@@ -1,19 +1,26 @@
 import random as rnd
 
+suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
+
 def suitRoll():
     return rnd.randint(0, 3)
 
 def valueRoll():
-    return rnd.randint(0, 12)
+    return rnd.randint(1, 13)
 
 def cardRoll():
     x = valueRoll()
     y = suitRoll()
-    suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
     return x, suits[y]
-def cardCheck(arr, card):
-        # Checker for dupe
-        for y in range(1, len(arr) - 1):
-            if arr[y] == card:
-                print("The card is equal")
-        return False
+def cardCheck(played_cards, new_card):
+    return new_card in played_cards
+
+def calculate_total(cards):
+    total = 0
+    for card in cards:
+        value = card[0]
+        if value > 10:
+            total += 10
+        else:
+            total += value
+    return total
