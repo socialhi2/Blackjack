@@ -18,8 +18,14 @@ played = [0]
 #x2, y2 = deck.cardRoll()
 #print("Your cards: ", x1, y1, " and ", x2, y2, "Your total is: ", x1 + x2)
 
+def end_message(wn):
+    if wn == 1:
+        print("You have won!")
+    if wn == 0:
+        print("You lost!")
+
 def play_blackjack():
-    played_cards=[]
+    cc = 0
     game_close = False
     # Main Menu Loop
     while not game_close:
@@ -30,6 +36,7 @@ def play_blackjack():
             continue
         # Main Game Loop
         if usr == 1:
+            played_cards = []
             for _ in range(2):
                 card = deck.cardRoll()
                 while deck.cardCheck(played_cards, card):
@@ -38,6 +45,8 @@ def play_blackjack():
                 print(f"Card: {card[0]} of {card[1]}")
             total = calculate_total(played_cards)
             print(f"Total: ", total)
+
+            #Goes here if player does not start with 21
             if total < 21:
                 usr = int(input("Enter 1 to hit | Enter 2 to stay \n"))
                 if usr == 1:
@@ -45,10 +54,9 @@ def play_blackjack():
                     while deck.cardCheck(played_cards, card):
                         card = deck.cardRoll()
                     played_cards.append(card)
+                    total = calculate_total(played_cards)
                     print(f"Card: {card[0]} of {card[1]}")
-            if total < 21 & usr == 2:
-                print("You win the hand")
-                total = 0
-            if total > 21:
-                print("You lose the hand")
+                    print(f"Total: {total}")
+
+
 play_blackjack()
