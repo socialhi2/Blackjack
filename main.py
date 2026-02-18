@@ -18,7 +18,9 @@ from deck import calculate_total
 #print("Your cards: ", x1, y1, " and ", x2, y2, "Your total is: ", x1 + x2)
 
 
-
+def dealer():
+    # This is for the dealer
+    print("This is a holder")
 
 
 def end_message(total):
@@ -31,7 +33,6 @@ def end_message(total):
         print("You lost!")
 
 def play_blackjack():
-    cc = 0
     game_close = False
 
     # Main Menu Loop
