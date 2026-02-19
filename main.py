@@ -48,18 +48,34 @@ def play_blackjack():
         if usr == 1:
             in_game = True
             played_cards = []
+            player_cards = []
+            dealer_cards = []
             for _ in range(2):
+                # Dealer gets first card
+                card = deck.cardRoll()
+                while deck.cardCheck(played_cards, card):
+                    card = deck.cardRoll()
+                # Appends card to the total and dealer
+                played_cards.append(card)
+                dealer_cards.append(card)
+
+
+                # Player goes second
                 card = deck.cardRoll()
                 while deck.cardCheck(played_cards, card):
                     card = deck.cardRoll()
                 played_cards.append(card)
+                player_cards.append(card)
+
                 print(f"Card: {card[0]} of {card[1]}")
-            total = calculate_total(played_cards)
-            print(f"Total: ", total)
+            player_total = calculate_total(player_cards)
+            print(f"Total: ", player_total)
 
             #Goes here if player does not start with 21
             while in_game:
-                if total <= 21:
+                if player_total <= 21:
+                    #Prints dealer's first card
+
                     # print("Utility 3: Reached if total < 21")
                     usr = int(input("Enter 1 to hit | Enter 2 to stay \n"))
 
@@ -69,19 +85,20 @@ def play_blackjack():
                         while deck.cardCheck(played_cards, card):
                             card = deck.cardRoll()
                         played_cards.append(card)
-                        total = calculate_total(played_cards)
+                        player_cards.append(card)
+                        player_total = calculate_total(player_cards)
                         print(f"Card: {card[0]} of {card[1]}")
-                        print(f"Total: {total}")
+                        print(f"Total: {player_total}")
 
                     if usr == 2:
                         in_game = False
                         # print("Utility 5: Reached if usr input is 2")
-                        end_message(total)
+                        end_message(player_total)
 
-                if total > 21:
+                if player_total > 21:
                     in_game = False
                     # print("Utility 6: Reached if total > 21")
-                    end_message(total)
+                    end_message(player_total)
 
 
 play_blackjack()
